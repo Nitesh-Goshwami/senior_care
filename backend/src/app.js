@@ -2,7 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import errorHandler from './middleware/error.js';
-
+import cors from 'cors';
+import logger from './middleware/logger.js';
 import authRoutes from './routes/auth.routes.js';
 import productsRoutes from './routes/products.routes.js';
 import cartRoutes from './routes/cart.routes.js';
@@ -16,6 +17,8 @@ dotenv.config();
 connectDB();
 
 const app = express();
+app.use(cors());
+app.use(logger);
 
 // Body parser
 app.use(express.json());
